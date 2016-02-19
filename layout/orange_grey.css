@@ -47,6 +47,7 @@ body {
 }
 
 td {
+    border-radius: 5px;
     font-family: Verdana, Arial, sans-serif;
     font-size: 13px;
     text-align: left;
@@ -72,6 +73,7 @@ td {
 
 /* Les titres des rubriques */
 .headtext {
+    border-radius: 8px;
     color: #000000;
     font-weight: bold;
     font-size: 14px;
@@ -81,6 +83,7 @@ td {
 
 /* Bords des titres */
 .headlinebg {
+    border-radius: 8px;
     background-color: #000000;
 }
 

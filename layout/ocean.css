@@ -51,6 +51,7 @@ BODY
 }
 TD
 {
+    border-radius: 5px;
     FONT-SIZE: 13px;
     COLOR: #dedede;
     FONT-FAMILY: Verdana, Arial, sans-serif;
@@ -64,6 +65,7 @@ TD
 }
 .headtext
 {
+    border-radius: 8px;
     FONT-WEIGHT: bold;
     COLOR: #dedede;
     BACKGROUND-COLOR: #003366;
@@ -71,6 +73,7 @@ TD
 }
 .headlinebg
 {
+    border-radius: 8px;
     BACKGROUND-COLOR: #003366
 }
 .tdtop

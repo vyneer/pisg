@@ -31,6 +31,7 @@ body {
 	color: black;
 }
 td {
+	border-radius: 5px;
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 13px;
 	color: black;
@@ -51,12 +52,14 @@ td {
 	font-weight: bold;
 }
 .headtext {
+	border-radius: 8px;
 	color: white;
 	font-weight: bold;
 	text-align: center;
 	background-color: #666699;
 }
 .headlinebg {
+	border-radius: 8px;
 	background-color: #000000;
 }
 .tdtop {
