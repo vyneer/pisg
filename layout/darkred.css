@@ -42,6 +42,7 @@ table {
 }
 
 td {
+	border-radius: 5px;
 	font-family: verdana, arial, sans-serif;
  	font-size: 13px;
  	color:white;
@@ -58,19 +59,22 @@ td {
 }
 
 .headtext {
+    position: relative;
+    top: -1%;
+    left: -0.05%;
+    border-radius: 10px;
     font-family: verdana, arial, sans-serif;
     font-size:13px;
     color:white;
     background-color:#444444;
-    border-color:#990000;
-    border-style:solid; 
     text-align:center;
-    border-width:1px;
+    border-width: 0px;
     font-weight:bold;
 }
 
 .headlinebg {
-    background-color:black; 
+    border-radius: 10.5px;
+    background-color:#990000; 
 }
 
 .tdtop {

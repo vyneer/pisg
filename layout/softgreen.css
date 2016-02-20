@@ -53,6 +53,7 @@ body {
 }
 
 td {
+    border-radius: 5px;
     font-family: Verdana, Arial, sans-serif;
     font-size: 13px;
     color: black;
@@ -67,6 +68,7 @@ td {
 
 /* Cell Properties for Headlines EX: "Most Active Nicks" */
 .headtext {
+    border-radius: 8px;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -75,6 +77,7 @@ td {
 
 /* Has no apparent effect */
 .headlinebg {
+    border-radius: 8px;
     background-color: #000000;
 }
 

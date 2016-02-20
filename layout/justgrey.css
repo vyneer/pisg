@@ -57,6 +57,7 @@ body
 }
 td
 {
+    border-radius: 5px;
     font-size: 13px;
     color: white;
     font-family: verdana, arial, sans-serif;
@@ -71,6 +72,7 @@ td
 }
 .headtext
 {
+    border-radius: 8px;
     font-weight: bold;
     color: white;
     background-color: none;
@@ -78,6 +80,7 @@ td
 }
 .headlinebg
 {
+    border-radius: 8px;
     background-color: #344454;
 }
 .tdtop
