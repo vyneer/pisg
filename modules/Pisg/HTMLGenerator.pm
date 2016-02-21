@@ -304,7 +304,7 @@ sub _htmlfooter
     my %hash;
 
     my $pisg_hp = $self->_template_text('pisghomepage');
-    $hash{pisg_url} = '<a href="http://pisg.sourceforge.net/" title="' . $pisg_hp . '" class="background">pisg</a>';
+    $hash{pisg_url} = '<a href="https://pisg.github.io/" title="' . $pisg_hp . '" class="background">pisg</a>';
 
     $hash{version} = $self->{cfg}->{version};
 
