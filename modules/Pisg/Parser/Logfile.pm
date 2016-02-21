@@ -794,7 +794,7 @@ sub _adjusttimeoffset
 sub _read_cache
 {
     my ($self, $statsref, $linesref, $logfile) = @_;
-    my $mtime = (stat $logfile)[9];
+    my $csum = (split(' ', `cksum $logfile`))[0];
     my $cachefile = $logfile;
     $cachefile =~ s/[^\w-]/_/g;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
@@ -810,7 +810,7 @@ sub _read_cache
 
     return undef if $stats->{version} and $stats->{version} ne $self->{cfg}->{version};
     return undef unless $stats->{logfile} eq $logfile; # the name might be ambigous
-    return undef if $stats->{logfile_mtime} != $mtime; # file has changed
+    return undef if $stats->{logfile_csum} != $csum; # file has changed
 
     print "cached, " unless $self->{cfg}->{silent};
     $$statsref = $stats;
@@ -822,7 +822,7 @@ sub _read_cache
 sub _update_cache
 {
     my ($self, $stats, $lines, $logfile) = @_;
-    my $mtime = (stat $logfile)[9];
+    my $csum = (split(' ', `cksum $logfile`))[0];
     my $cachefile = $logfile;
     $cachefile =~ s/[^\w-]/_/g;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
@@ -830,7 +830,7 @@ sub _update_cache
     #print "Writing cache $cachefile...";
 
     $stats->{logfile} = $logfile;
-    $stats->{logfile_mtime} = $mtime;
+    $stats->{logfile_csum} = $csum;
 
     unless (open C, ">$cachefile") {
             die "$cachefile: $!";
