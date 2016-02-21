@@ -204,7 +204,7 @@ sub get_default_config_settings
 
         # Misc settings
 
-        foulwords => 'ass fuck bitch shit scheisse scheiße kacke arsch ficker ficken schlampe',
+        foulwords => 'ass fuck bitch shit scheisse scheiÃŸe kacke arsch ficker ficken schlampe',
         violentwords => 'slaps beats smacks',
         chartsregexp => '(?:is )?(?:np:|(?:now )?playing:? |listening to:? )(?:MPEG stream from)?\s*(.*)',
         ignorewords => '',
@@ -218,7 +218,7 @@ sub get_default_config_settings
         modules_dir => '',         # set in get_cmdline_options
         cchannels => '',           # set in get_cmdline_options
 
-        version => "0.73"
+        version => "0.80-preview"
     };
 
     # This enables us to use the search_path in other modules
