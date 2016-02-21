@@ -4,6 +4,8 @@ package Pisg::Parser::Logfile;
 # found at the end of the file.
 
 use strict;
+use Storable;
+
 $^W = 1;
 
 # the log cache
@@ -799,14 +801,11 @@ sub _read_cache
     $cachefile =~ s/[^\w-]/_/go;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
 
-    return undef unless -e $cachefile;
-    open C, $cachefile or die "$cachefile: $!";
-    local $/;
-    my $str = <C>;
-    close C;
+    return undef unless -e "$cachefile.pisglines";
+    return undef unless -e "$cachefile.pisgstats";
 
-    my ($stats, $lines);
-    eval $str;
+    my $lines = retrieve("$cachefile.pisglines");
+    my $stats = retrieve("$cachefile.pisgstats");
 
     return undef if $stats->{version} and $stats->{version} ne $self->{cfg}->{version};
     return undef unless $stats->{logfile} eq $logfile; # the name might be ambigous
@@ -827,18 +826,11 @@ sub _update_cache
     $cachefile =~ s/[^\w-]/_/g;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
 
-    #print "Writing cache $cachefile...";
-
     $stats->{logfile} = $logfile;
     $stats->{logfile_csum} = $csum;
 
-    unless (open C, ">$cachefile") {
-            die "$cachefile: $!";
-    }
-    $stats->{version} = $self->{cfg}->{version};
-    print C Data::Dumper->Dump([$stats], ["stats"]);
-    print C Data::Dumper->Dump([$lines], ["lines"]);
-    close C;
+    store $stats, "$cachefile.pisgstats";
+    store $lines, "$cachefile.pisglines";
 }
 
 sub _merge_stats
