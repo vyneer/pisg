@@ -794,9 +794,9 @@ sub _adjusttimeoffset
 sub _read_cache
 {
     my ($self, $statsref, $linesref, $logfile) = @_;
-    my $csum = (split(' ', `cksum $logfile`))[0];
+    my $csum = (split(' ', `sum -s $logfile`))[0];
     my $cachefile = $logfile;
-    $cachefile =~ s/[^\w-]/_/g;
+    $cachefile =~ s/[^\w-]/_/go;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
 
     return undef unless -e $cachefile;
@@ -822,7 +822,7 @@ sub _read_cache
 sub _update_cache
 {
     my ($self, $stats, $lines, $logfile) = @_;
-    my $csum = (split(' ', `cksum $logfile`))[0];
+    my $csum = (split(' ', `sum -s $logfile`))[0];
     my $cachefile = $logfile;
     $cachefile =~ s/[^\w-]/_/g;
     $cachefile = "$self->{cfg}->{cachedir}/$cachefile";
