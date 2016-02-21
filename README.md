@@ -64,15 +64,8 @@ translation, then send it to the mailing list.
 CONTACT INFORMATION
 -------------------
 If you have any issues with pisg, such as problems with installing or
-running pisg, then send an e-mail to the pisg mailing list:
+running pisg, then join us on the freenode IRC Network: chat.freenode.net on #pisg
 
-http://lists.sourceforge.net/mailman/listinfo/pisg-general
-
-You can report bugs or add feature requests here:
-http://sourceforge.net/tracker/?group_id=31862
-
-The pisg homepage is located at http://pisg.sourceforge.net/.
+The pisg homepage is located at http://pisg.github.io/.
 
 Have fun :)
-
- - The pisg project
