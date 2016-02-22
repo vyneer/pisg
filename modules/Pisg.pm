@@ -125,14 +125,14 @@ sub get_default_config_settings
         picwidth => '',
         picheight => '',
 
-        pic_v_0 => 'blue-v.png',
-        pic_v_6 => 'green-v.png',
-        pic_v_12 => 'yellow-v.png',
-        pic_v_18 => 'red-v.png',
-        pic_h_0 => 'blue-h.png',
-        pic_h_6 => 'green-h.png',
-        pic_h_12 => 'yellow-h.png',
-        pic_h_18 => 'red-h.png',
+        pic_v_0 => 'blue-v',
+        pic_v_6 => 'green-v',
+        pic_v_12 => 'yellow-v',
+        pic_v_18 => 'red-v',
+        pic_h_0 => 'blue-h',
+        pic_h_6 => 'green-h',
+        pic_h_12 => 'yellow-h',
+        pic_h_18 => 'red-h',
         piclocation => '.',
 
         # Stats settings
