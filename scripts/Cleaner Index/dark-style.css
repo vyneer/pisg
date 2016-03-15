@@ -1,0 +1,68 @@
+body {
+	background: #222222;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+h1, h2, h3, h4, h5, h6, p, td, th {
+	color: #EEEEEE;
+	font-family: Consolas, monospace;
+}
+
+th {
+	text-align: center;
+	padding: 8px;
+	font-size: 1.1em;
+}
+
+td {
+	padding: 8px;
+}
+
+table {
+	width: 100%;
+	background: #333333;
+	text-align: center;
+	border: 0;
+}
+
+table tr:nth-child(even) {
+    background-color: #444444;
+}
+
+table tr:nth-child(odd) {
+    background-color: #333333;
+}
+
+table tr:hover {
+	background: #252525;
+	cursor: pointer;
+}
+
+h1.center, h2.center, h3.center, h4.center, h5.center, h6.center, p.center {
+	text-align: center;
+}
+
+a, a:visited {
+	color: #EEEEEE;
+}
+
+a:hover {
+	color:#DDDDDD;
+}
+
+table, tr, th, td {
+	border-collapse: collapse;
+}
+
+pre code {
+	border: 1px solid #555555;
+	border-radius: 5px;
+	background-color: #333333;
+	padding: 12px;
+	display: block;
+}
+
+a.nostyle {
+	text-decoration: none;
+}
