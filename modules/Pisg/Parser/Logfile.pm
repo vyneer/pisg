@@ -746,7 +746,11 @@ sub _uniquify_nicks {
                 $stats->{word_upcase}{$realnick} ||= $stats->{word_upcase}{$word};
                 delete $stats->{wordcounts}{$word};
                 delete $stats->{wordnicks}{$word};
-                delete $stats->{word_upcase}{$word};
+                # We need the word case translation around if it is used as a
+                # song name.
+                if (!defined $stats->{chartcounts}{$word}) {
+                  delete $stats->{word_upcase}{$word};
+                }
             }
         }
     }
