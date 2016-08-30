@@ -73,11 +73,6 @@ sub thirdline
             $hash{newtopic} =~ m/" to "(.*)"/;
             $hash{newtopic} = $1;
 
-        } elsif ($3 eq 'Mode') {
-            $hash{newmode} = substr($5, 1);
-            $hash{nick} = $8 || $7;
-            $hash{nick} =~ s/.* (\S+)$/$1/; # Get the last word of the string
-
         } elsif (($5.$6) eq 'hasjoined') {
             $hash{newjoin} = $3;
 
@@ -85,6 +80,10 @@ sub thirdline
             if ($8 =~ /^\s+(\S+)/) {
                 $hash{newnick} = $1;
             }
+        } elsif ($3 eq 'Mode') {
+            $hash{newmode} = substr($5, 1);
+            $hash{nick} = $8 || $7;
+            $hash{nick} =~ s/.* (\S+)$/$1/; # Get the last word of the string
         }
 
         return \%hash;
