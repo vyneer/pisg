@@ -1732,7 +1732,7 @@ sub _get_subst
 {
     # This function looks at the user definition and see if there is sex
     # defined. If yes, return the appropriate value. If no, just return the
-    # default he/she value.
+    # default 'they' value.
     my $self = shift;
     my ($m,$f,$d,$hash) = @_;
     if ($hash->{nick} && $self->{users}->{sex}{$hash->{nick}}) {
@@ -1742,7 +1742,7 @@ sub _get_subst
             return $f;
         }
     }
-    return defined($d) ? $d : "$m/$f";
+    return defined($d) ? $d : "they";
 }
 
 sub _mostusedword
