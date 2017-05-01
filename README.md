@@ -25,6 +25,10 @@ channel to be run.
 
 RUNNING PISG
 ------------
+With ZNC, you might need to use this: 
+/msg *status loadmod log -sanitize /home/YOURUSER/.znc/users/YOURUSER/moddata/log/$NETWORK/$WINDOW.log
+(edit YOURUSER) with your own info. This will enable logging in a clean way for PISG to read them
+
 If you have setup everything inside the config file, then you just need to
 run it. If you're on a Linux/BSD/Unix system, this should do the work:
 
