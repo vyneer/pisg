@@ -1,4 +1,4 @@
-# 2004-11-21 by coaster
+;2004-11-21 by coaster
 
 alias me {
   if ($1) {
