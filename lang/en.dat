@@ -28,7 +28,7 @@ action2 = "Also, <b>[:nick]</b> tells us what's up with [:actions] actions."
 action3 = "No actions in [:channel]!"
 actiontext = "<b>For example, like this:</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[:line]"
 
-question1 = "Is <b>[:nick]</b> stupid or just asking too many questions?  [:per]% lines contained a question!"
+question1 = "Is <b>[:nick]</b> a little bit slower than anyone else, or just asking too many questions?  [:per]% lines contained a question!"
 question2 = "<b>[:nick]</b> didn't know that much either.  [:per]% of [:his:her:] lines were questions."
 question3 = "Nobody asked questions here; just geniuses in this channel?"
 
