@@ -173,15 +173,15 @@ sub match_urls
 {
     my $str = shift;
 
+    require URI::Find::Schemeless;
+ 
     my @urls;
     # we don't treat mailto: as URL here
-    while ($str =~ /((?:(?:https?|ftp|telnet|news):\/\/|(?:(?:(www)|(ftp))[\w-]*\.))[-\w\/~\@:]+\.\S+[\w\/])/gio) {
-        my $url = $2 ? "http://$1" : ($3 ? "ftp://$1" : $1);
-        my $url_strip = $url;
-        $url_strip =~ s/\/$//;
-        $url_seen{$url_strip} ||= $url; # normalize URL to first seen form
-        push (@urls, $url_seen{$url_strip});
-    }
+    my $finder = URI::Find::Schemeless->new(sub {
+        my($uri) = shift;
+        push (@urls, $uri);
+    });
+    $finder->find(\$str);
 
     return @urls;
 }
@@ -197,16 +197,16 @@ sub htmlentities
     $str =~ s/\</\&lt;/go;
     $str =~ s/\>/\&gt;/go;
     if ($charset and $charset =~ /iso-8859-1/i) { # this is for people without Text::Iconv
-        $str =~ s/ü/&uuml;/go;
-        $str =~ s/ö/&ouml;/go;
-        $str =~ s/ä/&auml;/go;
-        $str =~ s/ß/&szlig;/go;
-        $str =~ s/å/&aring;/go;
-        $str =~ s/æ/&aelig;/go;
-        $str =~ s/ø/&oslash;/go;
-        $str =~ s/Å/&Aring;/go;
-        $str =~ s/Æ/&AElig;/go;
-        $str =~ s/Ø/&Oslash;/go;
+        $str =~ s/ï¿½/&uuml;/go;
+        $str =~ s/ï¿½/&ouml;/go;
+        $str =~ s/ï¿½/&auml;/go;
+        $str =~ s/ï¿½/&szlig;/go;
+        $str =~ s/ï¿½/&aring;/go;
+        $str =~ s/ï¿½/&aelig;/go;
+        $str =~ s/ï¿½/&oslash;/go;
+        $str =~ s/ï¿½/&Aring;/go;
+        $str =~ s/ï¿½/&AElig;/go;
+        $str =~ s/ï¿½/&Oslash;/go;
         $str =~ s/\x95/\&bull;/go;
     }
     return $str;

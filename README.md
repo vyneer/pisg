@@ -12,6 +12,8 @@ Full documentation for pisg is located in 'docs/pisg-doc.txt' and
 
 Quick usage instructions below:
 
+Install URI::Find::Schemeless first.
+
 It's quite simple to set up pisg. You have 2 choices:
 
  * Set settings from commandline (try pisg --help)
