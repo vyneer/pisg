@@ -162,6 +162,8 @@ sub get_default_config_settings
         showsmileys => 0,
         showkarma => 0,
         showmru => 1,
+        showtlink => 1,
+        showtcoom => 1,
         showcharts => 0,
         showops => 1,
         showvoices => 0,

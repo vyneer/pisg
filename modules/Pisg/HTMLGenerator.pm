@@ -163,6 +163,14 @@ sub create_output
         $self->_mosturls();
     }
 
+    if ($self->{cfg}->{showtlink}) {
+        $self->_mostlinkers();
+    }
+
+    if ($self->{cfg}->{showtcoom}) {
+        $self->_mostcoomers();
+    }
+
     if ($self->{cfg}->{showcharts}) {
         $self->_charts();
     }
@@ -2040,6 +2048,78 @@ sub _mosturls
             _html("<td class=\"hicell\"><a href=\"$linkurl\">$printurl</a></td>");
             _html("<td class=\"hicell\">$urlcount</td>");
             _html("<td class=\"hicell\">$lastused</td>");
+            _html("</tr>");
+        }
+        _html("</table>");
+    }
+}
+
+sub _mostlinkers
+{
+    # List showing the biggest linkers
+    my $self = shift;
+
+    my @sortlinkers = sort { $self->{stats}->{toplinkers}{$b} <=> $self->{stats}->{toplinkers}{$a} }
+                        keys %{ $self->{stats}->{toplinkers} };
+
+    if (@sortlinkers) {
+
+        $self->_headline($self->_template_text('toplinkers'));
+
+        _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
+        _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('nick') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('lineswlinks') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('randomlink') . "</b></td></tr>");
+
+        for(my $i = 0; $i < 5; $i++) {
+            last unless $i < @sortlinkers;
+            my $a = $i + 1;
+            my $urlcount = $self->{stats}->{toplinkers}{$sortlinkers[$i]};
+            my @linkarray = @{$self->{stats}->{randlinkers}{$sortlinkers[$i]}};
+            my $randlink = $linkarray[ rand @linkarray ];
+            my $nick = $sortlinkers[$i];
+            my $printurl = htmlentities($randlink, $self->{cfg}->{charset});
+            my $class = ($a == 1) ? 'hirankc' : 'rankc';
+            _html("<tr><td class=\"$class\">$a</td>");
+            _html("<td class=\"hicell\">$nick</td>");
+            _html("<td class=\"hicell\">$urlcount</td>");
+            _html("<td class=\"hicell\"><a style=\"word-break: break-word\" href=\"$printurl\">$randlink</a></td>");
+            _html("</tr>");
+        }
+        _html("</table>");
+    }
+}
+
+sub _mostcoomers
+{
+    # List showing the biggest coomers
+    my $self = shift;
+
+    my @sortcoomers = sort { $self->{stats}->{topcoomers}{$b} <=> $self->{stats}->{topcoomers}{$a} }
+                        keys %{ $self->{stats}->{topcoomers} };
+
+    if (@sortcoomers) {
+
+        $self->_headline($self->_template_text('topcoomers'));
+
+        _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
+        _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('nick') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('lineswcoom') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('randomcoom') . "</b></td></tr>");
+
+        for(my $i = 0; $i < 5; $i++) {
+            last unless $i < @sortcoomers;
+            my $a = $i + 1;
+            my $coomcount = $self->{stats}->{topcoomers}{$sortcoomers[$i]};
+            my @coomarray = @{$self->{stats}->{randcoomers}{$sortcoomers[$i]}};
+            my $randcoom = $coomarray[ rand @coomarray ];
+            my $nick = $sortcoomers[$i];
+            my $printcoom = htmlentities($randcoom, $self->{cfg}->{charset});
+            my $class = ($a == 1) ? 'hirankc' : 'rankc';
+            _html("<tr><td class=\"$class\">$a</td>");
+            _html("<td class=\"hicell\">$nick</td>");
+            _html("<td class=\"hicell\">$coomcount</td>");
+            _html("<td class=\"hicell\"><a style=\"word-break: break-word\" href=\"$printcoom\">$randcoom</a></td>");
             _html("</tr>");
         }
         _html("</table>");

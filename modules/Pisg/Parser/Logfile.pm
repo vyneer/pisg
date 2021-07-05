@@ -436,11 +436,21 @@ sub _parse_file
                     }
 
                     # Find URLs
-                    if (my @urls = match_urls($saying)) {
+                    if (my @urls = match_urls($line)) {
+                        if(@urls != 0) {
+                            $stats->{toplinkers}{$nick}++;
+                            if(index(lc($line), "nsfw") != -1) {
+                                $stats->{topcoomers}{$nick}++;
+                            }
+                        }
                         foreach my $url (@urls) {
                             if(!url_is_ignored($url)) {
                                 $stats->{urlcounts}{$url}++;
                                 $stats->{urlnicks}{$url} = $nick;
+                            }
+                            push @{ $stats->{randlinkers}{$nick} }, $url;
+                            if(index(lc($line), "nsfw") != -1) {
+                                push @{ $stats->{randcoomers}{$nick} }, $url;
                             }
                         }
                     }
@@ -853,7 +863,7 @@ sub _merge_stats
             $stats->{$key} = $s->{$key};
         } elsif ($key =~ /^(parsedlines|totallines)$/) { # {key} = int: add
             $stats->{$key} += $s->{$key};
-        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
+        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|randlinkers|randcoomers|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
             foreach my $subkey (keys %{$s->{$key}}) {
                 $stats->{$key}->{$subkey} = $s->{$key}->{$subkey};
             }
