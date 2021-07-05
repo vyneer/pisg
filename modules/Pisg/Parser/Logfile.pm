@@ -444,6 +444,7 @@ sub _parse_file
                             }
                         }
                         foreach my $url (@urls) {
+                            $url = lc($url);
                             if(!url_is_ignored($url)) {
                                 $stats->{urlcounts}{$url}++;
                                 $stats->{urlnicks}{$url} = $nick;
