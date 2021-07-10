@@ -2069,12 +2069,15 @@ sub _mostlinkers
         _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
         _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('nick') . "</b></td>");
         _html("<td class=\"tdtop\"><b>" . $self->_template_text('lineswlinks') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('linkspercent') . "</b></td>");
         _html("<td class=\"tdtop\"><b>" . $self->_template_text('randomlink') . "</b></td></tr>");
 
-        for(my $i = 0; $i < 5; $i++) {
+        for(my $i = 0; $i < 10; $i++) {
             last unless $i < @sortlinkers;
             my $a = $i + 1;
             my $urlcount = $self->{stats}->{toplinkers}{$sortlinkers[$i]};
+            my $rawpercent = $urlcount * 100 / $self->{stats}->{lines}{$sortlinkers[$i]};
+            my $msgpercent = sprintf("%.2f", $rawpercent);
             my @linkarray = @{$self->{stats}->{randlinkers}{$sortlinkers[$i]}};
             my $randlink = $linkarray[ rand @linkarray ];
             my $nick = $sortlinkers[$i];
@@ -2083,6 +2086,7 @@ sub _mostlinkers
             _html("<tr><td class=\"$class\">$a</td>");
             _html("<td class=\"hicell\">$nick</td>");
             _html("<td class=\"hicell\">$urlcount</td>");
+            _html("<td class=\"hicell\">$msgpercent%</td>");
             _html("<td class=\"hicell\"><a style=\"word-break: break-word\" href=\"$printurl\">$randlink</a></td>");
             _html("</tr>");
         }
@@ -2105,12 +2109,15 @@ sub _mostcoomers
         _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
         _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('nick') . "</b></td>");
         _html("<td class=\"tdtop\"><b>" . $self->_template_text('lineswcoom') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('coompercent') . "</b></td>");
         _html("<td class=\"tdtop\"><b>" . $self->_template_text('randomcoom') . "</b></td></tr>");
 
-        for(my $i = 0; $i < 5; $i++) {
+        for(my $i = 0; $i < 10; $i++) {
             last unless $i < @sortcoomers;
             my $a = $i + 1;
             my $coomcount = $self->{stats}->{topcoomers}{$sortcoomers[$i]};
+            my $rawpercent = $coomcount * 100 / $self->{stats}->{lines}{$sortcoomers[$i]};
+            my $coompercent = sprintf("%.2f", $rawpercent);
             my @coomarray = @{$self->{stats}->{randcoomers}{$sortcoomers[$i]}};
             my $randcoom = $coomarray[ rand @coomarray ];
             my $nick = $sortcoomers[$i];
@@ -2119,6 +2126,7 @@ sub _mostcoomers
             _html("<tr><td class=\"$class\">$a</td>");
             _html("<td class=\"hicell\">$nick</td>");
             _html("<td class=\"hicell\">$coomcount</td>");
+            _html("<td class=\"hicell\">$coompercent%</td>");
             _html("<td class=\"hicell\"><a style=\"word-break: break-word\" href=\"$printcoom\">$randcoom</a></td>");
             _html("</tr>");
         }
