@@ -126,6 +126,7 @@ sub analyze
         day_times => [ undef ],
         parsedlines => 0,
         totallines => 0,
+        yumpcount => 0,
     );
 
     if ($self->{cfg}->{cachedir} and not -d $self->{cfg}->{cachedir}) {
@@ -144,6 +145,7 @@ sub analyze
             lastnick => '',
             parsedlines => 0,
             totallines => 0,
+            yumpcount => 0,
         };
         my $l = {};
 
@@ -665,6 +667,9 @@ sub _parse_words
 
         $stats->{words}{$nick}++;
         $stats->{word_times}{$nick}[$tod]++;
+        if (index(lc($word), "miyanohype") != -1) {
+            $stats->{yumpcount}++;
+        }
         # remove uninteresting words
         next if $ignorewords_regexp and $word =~ m/$ignorewords_regexp/i;
 
@@ -862,7 +867,7 @@ sub _merge_stats
             next;
         } elsif ($key =~ /^(oldtime|lastnick|lastnormal|monocount)$/) { # {key} = int/str: copy
             $stats->{$key} = $s->{$key};
-        } elsif ($key =~ /^(parsedlines|totallines)$/) { # {key} = int: add
+        } elsif ($key =~ /^(parsedlines|totallines|yumpcount)$/) { # {key} = int: add
             $stats->{$key} += $s->{$key};
         } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|randlinkers|randcoomers|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
             foreach my $subkey (keys %{$s->{$key}}) {

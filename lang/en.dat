@@ -70,6 +70,9 @@ mono2 = "Another lonely one was <b>[:nick]</b>, who managed to hit [:monos] time
 wpl1 = "<b>[:nick]</b> wrote an average of [:wpl] words per line."
 wpl2 = "Channel average was [:avg] words per line."
 
+yump1 = "Chat did <b>[:yumps]</b> sets of 3 yumps, which is about <b>[:feet]</b> feet (or <b>[:meters]</b> meters)."
+yump2 = "That's an impressive [:percentage]% of distance to the [:astobject]!"
+
 long1 = "<b>[:nick]</b> wrote the longest lines, averaging [:letters] letters per line."
 long2 = "[:channel] average was [:avg] letters per line."
 

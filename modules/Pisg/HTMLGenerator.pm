@@ -132,6 +132,7 @@ sub create_output
         $self->_linelengths();
         $self->_mostwords();
         $self->_mostwordsperline();
+        $self->_yumps();
         _html("</table>"); # Needed for sections
     }
 
@@ -1844,6 +1845,35 @@ sub _mostwordsperline
         _html("<br /><span class=\"small\">$text</span>");
         _html("</td></tr>");
     }
+}
+
+sub _yumps
+{
+    # The person who got the most words per line
+    my $self = shift;
+
+    my $yumps = $self->{stats}->{yumpcount};
+    my $yumpfeet = $yumps * 3;
+    my $yumpmeters = $yumpfeet * 0.3048;
+    my $dist = $yumpmeters * 100 / 384399000;
+
+    my %hash = (
+        yumps => $yumps,
+        feet => $yumpfeet,
+        meters => $yumpmeters
+    );
+
+    my $text = $self->_template_text('yump1', %hash);
+    _html("<tr><td class=\"hicell\">$text");
+
+    my %hash2 = (
+        percentage => $dist,
+        astobject => "Moon",
+    );
+
+    $text = $self->_template_text('yump2', %hash2);
+    _html("<br /><span class=\"small\">$text</span>");
+    _html("</td></tr>");
 }
 
 sub _mostreferencednicks
