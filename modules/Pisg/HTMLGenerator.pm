@@ -126,7 +126,7 @@ sub create_output
         $self->_questions();
         $self->_shoutpeople();
         $self->_capspeople();
-        $self->_violent();
+        $self->_violent() if $self->{cfg}->{showviolentlines};
         $self->_mostsmiles();
         $self->_mostsad();
         $self->_linelengths();
@@ -180,11 +180,11 @@ sub create_output
         $self->_headline($self->_template_text('othernumtopic'));
         _html("<table width=\"$self->{cfg}->{tablewidth}\">"); # Needed for sections
         $self->_gotkicks();
-        $self->_mostkicks();
+        $self->_mostkicks() if $self->{cfg}->{showkickline};
         $self->_mostop() if $self->{cfg}->{showops};
         $self->_mosthalfop() if $self->{cfg}->{showhalfops};
         $self->_mostvoice() if $self->{cfg}->{showvoices};
-        $self->_mostactions();
+        $self->_mostactions() if $self->{cfg}->{showactionline};
         $self->_mostmonologues();
         $self->_mostjoins();
         $self->_mostfoul();
