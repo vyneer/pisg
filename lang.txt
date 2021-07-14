@@ -117,7 +117,11 @@ wpl1 = "<b>[:nick]</b> wrote an average of [:wpl] words per line."
 wpl2 = "Channel average was [:avg] words per line."
 
 yump1 = "Chat did <b>[:yumps]</b> sets of 3 yumps, which is about <b>[:feet]</b> feet (or <b>[:meters]</b> meters)."
-yump2 = "That's an impressive [:percentage]% of distance to the [:astobject]!"
+yump2 = "That's an impressive <b>[:percentage]%</b> of distance to the [:astobject]!"
+
+tiny1 = "The most prolific nathanTiny enthusiast this period was <b>[:poster]</b>, who did <b>[:attempts]</b> attempts!"
+tiny2 = "Another nathanTiny enjoyer, <b>[:poster]</b>, was not too far behind, making <b>[:attempts]</b> attempts."
+tiny3 = "In third place we have <b>[:poster]</b> with <b>[:attempts]</b> tries. Nice!"
 
 long1 = "<b>[:nick]</b> wrote the longest lines, averaging [:letters] letters per line."
 long2 = "[:channel] average was [:avg] letters per line."

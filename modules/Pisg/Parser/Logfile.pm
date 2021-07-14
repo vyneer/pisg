@@ -670,6 +670,10 @@ sub _parse_words
         if (index(lc($word), "miyanohype") != -1) {
             $stats->{yumpcount}++;
         }
+        if (index(lc($word), lc("nathanTiny2_OG")) != -1) {
+            $stats->{tinycount}{$nick}++;
+        }
+        
         # remove uninteresting words
         next if $ignorewords_regexp and $word =~ m/$ignorewords_regexp/i;
 

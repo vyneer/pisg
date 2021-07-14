@@ -133,6 +133,7 @@ sub create_output
         $self->_mostwords();
         $self->_mostwordsperline();
         $self->_yumps();
+        $self->_mosttiny();
         _html("</table>"); # Needed for sections
     }
 
@@ -1874,6 +1875,42 @@ sub _yumps
     $text = $self->_template_text('yump2', %hash2);
     _html("<br /><span class=\"small\">$text</span>");
     _html("</td></tr>");
+}
+
+sub _mosttiny
+{
+    # The person who got the most words per line
+    my $self = shift;
+
+    my @sorttiny = sort { $self->{stats}->{tinycount}{$b} <=> $self->{stats}->{tinycount}{$a} }
+                        keys %{ $self->{stats}->{tinycount} };
+
+    if (@sorttiny) {
+        my %hash = (
+            poster => $sorttiny[0],
+            attempts => $self->{stats}->{tinycount}{$sorttiny[0]},
+        );
+
+        my $text = $self->_template_text('tiny1', %hash);
+        _html("<tr><td class=\"hicell\">$text");
+
+        my %hash2 = (
+            poster => $sorttiny[1],
+            attempts => $self->{stats}->{tinycount}{$sorttiny[1]},
+        );
+
+        $text = $self->_template_text('tiny2', %hash2);
+        _html("<br /><span class=\"small\">$text</span>");
+
+        my %hash3 = (
+            poster => $sorttiny[2],
+            attempts => $self->{stats}->{tinycount}{$sorttiny[2]},
+        );
+
+        $text = $self->_template_text('tiny3', %hash3);
+        _html("<br /><span class=\"small\">$text</span>");
+        _html("</td></tr>");
+    }
 }
 
 sub _mostreferencednicks
