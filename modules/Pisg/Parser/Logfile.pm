@@ -448,12 +448,12 @@ sub _parse_file
                         foreach my $url (@urls) {
                             my $lcurl = lc($url);
                             if(!url_is_ignored($lcurl)) {
-                                $stats->{urlcounts}{$lcurl}++;
-                                $stats->{urlnicks}{$lcurl} = $nick;
+                                $stats->{urlcounts}{$url}++;
+                                $stats->{urlnicks}{$url} = $nick;
                             }
-                            push @{ $stats->{randlinkers}{$nick} }, $lcurl;
+                            push @{ $stats->{randlinkers}{$nick} }, $url;
                             if(index(lc($line), "nsfw") != -1) {
-                                push @{ $stats->{randcoomers}{$nick} }, $lcurl;
+                                push @{ $stats->{randcoomers}{$nick} }, $url;
                             }
                         }
                     }
