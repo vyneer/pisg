@@ -165,6 +165,10 @@ sub create_output
         $self->_mosturls();
     }
 
+    if ($self->{cfg}->{showgreentext}) {
+        $self->_topgreentext();
+    }
+
     if ($self->{cfg}->{showtlink}) {
         $self->_mostlinkers();
     }
@@ -2115,6 +2119,45 @@ sub _mosturls
             _html("<td class=\"hicell\"><a href=\"$linkurl\">$printurl</a></td>");
             _html("<td class=\"hicell\">$urlcount</td>");
             _html("<td class=\"hicell\">$lastused</td>");
+            _html("</tr>");
+        }
+        _html("</table>");
+    }
+}
+
+sub _topgreentext
+{
+    # List showing the biggest linkers
+    my $self = shift;
+
+    my @sortgreen = sort { $self->{stats}->{topgreentext}{$b} <=> $self->{stats}->{topgreentext}{$a} }
+                        keys %{ $self->{stats}->{topgreentext} };
+
+    if (@sortgreen) {
+
+        $self->_headline($self->_template_text('topgreentext'));
+
+        _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
+        _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('nick') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('greenlines') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('greenpercent') . "</b></td>");
+        _html("<td class=\"tdtop\"><b>" . $self->_template_text('randomgreentext') . "</b></td></tr>");
+
+        for(my $i = 0; $i < 10; $i++) {
+            last unless $i < @sortgreen;
+            my $a = $i + 1;
+            my $linecount = $self->{stats}->{topgreentext}{$sortgreen[$i]};
+            my $rawpercent = $linecount * 100 / $self->{stats}->{lines}{$sortgreen[$i]};
+            my $msgpercent = sprintf("%.2f", $rawpercent);
+            my @linearray = @{$self->{stats}->{randgreentext}{$sortgreen[$i]}};
+            my $randline = $linearray[ rand @linearray ];
+            my $nick = $sortgreen[$i];
+            my $class = ($a == 1) ? 'hirankc' : 'rankc';
+            _html("<tr><td class=\"$class\">$a</td>");
+            _html("<td class=\"hicell\">$nick</td>");
+            _html("<td class=\"hicell\">$linecount</td>");
+            _html("<td class=\"hicell\">$msgpercent%</td>");
+            _html("<td class=\"hicell\">$randline</td>");
             _html("</tr>");
         }
         _html("</table>");

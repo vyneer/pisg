@@ -458,6 +458,11 @@ sub _parse_file
                         }
                     }
 
+                    if (substr( $saying, 0, 1 ) eq ">" || substr( $saying, 0, 5 ) eq "/me >") {
+                        $stats->{topgreentext}{$nick}++;
+                        push @{ $stats->{randgreentext}{$nick} }, $saying;
+                    }
+
                     if ($saying =~ /$self->{chartsregexp}/i) {
                         $self->_charts($stats, $1, $nick);
                     }
@@ -873,7 +878,7 @@ sub _merge_stats
             $stats->{$key} = $s->{$key};
         } elsif ($key =~ /^(parsedlines|totallines|yumpcount)$/) { # {key} = int: add
             $stats->{$key} += $s->{$key};
-        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|randlinkers|randcoomers|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
+        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|randlinkers|randcoomers|randgreentext|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
             foreach my $subkey (keys %{$s->{$key}}) {
                 $stats->{$key}->{$subkey} = $s->{$key}->{$subkey};
             }
