@@ -201,6 +201,8 @@ sub get_default_config_settings
         charset => 'iso-8859-1',
         logcharset => '',
         logcharsetfallback => '',
+        cleanupreferenced => 0,
+        cleanupminimum => 5,
 
         # sorting
         sortbywords => 0,
@@ -322,6 +324,10 @@ sub init_config
 
             if ($line =~ /\bignore=(["'])Y\1/i) {
                 add_ignore($nick);
+            }
+
+            if ($line =~ /\brefignore=(["'])Y\1/i) {
+                add_reference_ignore($nick);
             }
 
             if ($line =~ /\bsex=(["'])([MmFfBb])\1/) {

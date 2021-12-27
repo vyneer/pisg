@@ -1926,8 +1926,10 @@ sub _mostreferencednicks
 
     foreach my $word (sort keys %{ $self->{stats}->{wordcounts} }) {
         next if is_ignored($word);
+        next if is_reference_ignored($word);
         my $nick = is_nick($word) or next;
         next if !exists $self->{stats}->{lines}{$nick};
+        next if $self->{cfg}->{cleanupreferenced} and $self->{stats}->{lines}{$nick} < $self->{cfg}->{cleanupminimum} * $self->{stats}->{days};
         $usages{$word} = $self->{stats}->{wordcounts}{$word};
     }
 

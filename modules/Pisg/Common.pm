@@ -26,13 +26,13 @@ Pisg::Common - some common functions of pisg.
 
 use Exporter;
 @ISA = ('Exporter');
-@EXPORT = qw(add_alias add_aliaswild add_ignore add_url_ignore is_ignored url_is_ignored find_alias store_aliases restore_aliases match_urls match_email htmlentities urlencode is_nick randomglob wordlist_regexp);
+@EXPORT = qw(add_alias add_aliaswild add_ignore add_reference_ignore add_url_ignore is_ignored is_reference_ignored url_is_ignored find_alias store_aliases restore_aliases match_urls match_email htmlentities urlencode is_nick randomglob wordlist_regexp);
 
 use strict;
 $^W = 1;
 
-my (%aliases, %aliaswilds, %ignored, %aliasseen, %ignored_urls, %url_seen);
-my (%aliases2, %aliaswilds2, %ignored2, %aliasseen2, %ignored_urls2, %url_seen2);
+my (%aliases, %aliaswilds, %ignored, %refignored, %aliasseen, %ignored_urls, %url_seen);
+my (%aliases2, %aliaswilds2, %ignored2, %refignored2, %aliasseen2, %ignored_urls2, %url_seen2);
 
 # add_alias assumes that the first argument is the true nick and the second is
 # the alias, but will accomidate other arrangements if necessary.
@@ -72,6 +72,12 @@ sub add_ignore
     $ignored{$nick} = 1;
 }
 
+sub add_reference_ignore
+{
+    my $nick = shift;
+    $refignored{$nick} = 1;
+}
+
 sub is_ignored
 {
     my $nick = shift;
@@ -81,6 +87,18 @@ sub is_ignored
         $ignored{$nick} = 1;
     } else {
         $ignored{$nick} = 0;
+    }
+}
+
+sub is_reference_ignored
+{
+    my $nick = shift;
+    if ($refignored{$nick}) {
+        return 1;
+    } elsif ($refignored{is_nick($nick)}) {
+        $refignored{$nick} = 1;
+    } else {
+        $refignored{$nick} = 0;
     }
 }
 
