@@ -167,6 +167,7 @@ mostnickstopic = "Users with most nicknames"
 bylinetopic = "[:date] at [:time] by [:nick]"
 dailyactivitytopic = "Daily activity (last [:n] days)"
 activegenderstopic = "Most active gender"
+chattergraphtopic = "Number of chatters (last 24 hours)"
 
 ## Other text
 
