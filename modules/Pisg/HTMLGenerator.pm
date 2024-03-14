@@ -2703,7 +2703,7 @@ sub _chattergraph {
 
     $self->_headline($self->_template_text('chattergraphtopic'));
     _html("<br>");
-    _html("<iframe src=\"https://grafana.0x01.host/d-solo/cXlQcEV7z/clipper-metrics?orgId=1&refresh=5s&panelId=7&from=$dt_prev&to=$dt&theme=light\" width=\"$self->{cfg}->{tablewidth}\" height=\"320\" frameborder=\"0\"></iframe>");
+    _html("<iframe src=\"https://grafana.0x01.host/d-solo/cXlQcEV7z/dgg?orgId=1&refresh=5s&panelId=7&from=$dt_prev&to=$dt&theme=light\" width=\"$self->{cfg}->{tablewidth}\" height=\"320\" frameborder=\"0\"></iframe>");
     _html("<br>");
 }
 
